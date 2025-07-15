@@ -3,12 +3,12 @@ import {
   createChallenge, 
   getAllChallenges, 
   getChallengeDetails,
-  getChallengeContent,
   updateChallenge, 
   deleteChallenge,
   purchaseChallenge,
   getChallengesByCategory,
   getChallengesCount,
+  bulkPurchaseChallenges
 } from '../controllers/challengeController.js';
 
 import {getUserPurchasedChallenges} from '../controllers/userController.js';
@@ -24,8 +24,9 @@ router.get('/category/:categoryId', getChallengesByCategory);
 
 // Protected routes
 router.use(protect);
-router.get('/:id/content', getChallengeContent);
+// router.get('/:id/content', getChallengeContent);
 router.post('/:id/purchase', purchaseChallenge);
+router.post('/bulk-purchase', bulkPurchaseChallenges);
 
 
 // Admin only routes
@@ -39,6 +40,15 @@ router.delete('/:id', deleteChallenge);
 router.use(protect);
 router.use(authorize('admin'));
 router.get('/users/:userId/purchased-challenges',getUserPurchasedChallenges);
+
+
+import { uploadChallenges } from '../controllers/challengeController.js';
+import multer from 'multer';
+
+// Use memory storage instead of disk storage
+const upload = multer({ storage: multer.memoryStorage() });
+
+router.post('/upload', upload.single('file'), uploadChallenges);
 
 
 export default router;
