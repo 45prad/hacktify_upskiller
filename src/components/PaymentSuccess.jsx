@@ -43,7 +43,7 @@ export const PaymentSuccess = () => {
           Thank you for your purchase. Your tokens have been added to your account.
         </p>
         <button
-          onClick={() => navigate('/token-management')}
+          onClick={() => navigate('/tokenmanagement')}
           className="mt-6 bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-6 rounded-lg"
         >
           Back to Token Management
