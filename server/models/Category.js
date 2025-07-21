@@ -15,7 +15,7 @@ const categorySchema = new mongoose.Schema({
   },
   imageUrl: {
     type: String,
-    default: 'https://via.placeholder.com/150'
+    default: 'https://www.softactivity.com/wp-content/uploads/cyber-security-1400.jpg'
   },
   difficulty: {
     type: String,
